@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Projet NFC</title>
+</head>
+<body>
+    <h1>Bienvenue sur Mon Projet NFC</h1>
+
+    <button onclick="lirePuceNFC()">Lire NFC</button>
+    <button onclick="ecrirePuceNFC()">Écrire NFC</button>
+
+    <div id="resultatNFC">Résultat NFC : </div>
+
+    <script>
+        async function lirePuceNFC() {
+            try {
+                const nfc = new NDEFReader();
+                await nfc.scan();
+
+                nfc.addEventListener('reading', event => {
+                    const { message, serialNumber } = event;
+                    document.getElementById('resultatNFC').innerHTML = `
+                        <p>Tag détecté :</p>
+                        <p>Message : ${JSON.stringify(message)}</p>
+                        <p>Numéro de série : ${serialNumber}</p>
+                    `;
+                });
+
+                nfc.addEventListener('error', error => {
+                    console.error('Erreur NFC :', error);
+                    document.getElementById('resultatNFC').innerHTML = '<p>Erreur NFC : Veuillez réessayer.</p>';
+                });
+            } catch (error) {
+                console.error('Erreur NFC :', error);
+                document.getElementById('resultatNFC').innerHTML = '<p>Erreur NFC : Veuillez réessayer.</p>';
+            }
+        }
+
+        async function ecrirePuceNFC() {
+            try {
+                const nfc = new NDEFWriter();
+                await nfc.write('text', 'Hello, NFC!');
+
+                document.getElementById('resultatNFC').innerHTML = `<p>Écriture NFC réussie.</p>`;
+            } catch (error) {
+                console.error('Erreur NFC :', error);
+                document.getElementById('resultatNFC').innerHTML = `<p>Erreur NFC : Veuillez réessayer.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
