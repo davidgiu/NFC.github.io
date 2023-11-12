@@ -32,7 +32,7 @@ jobs:
           node-version: 14
 
       - name: Navigate to the project directory
-        run: cd monProjetNFC || exit
+        run: cd NFC.github.io/monProjetNFC || exit
 
       - name: Install project dependencies
         run: npm install
@@ -44,4 +44,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          path: ./monProjetNFC/_site
+          path: ./NFC.github.io/monProjetNFC/_site
