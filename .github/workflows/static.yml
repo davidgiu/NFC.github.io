@@ -31,9 +31,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Change directory
-        run: cd ./main/monProjetNFC
-
       - name: Install project dependencies
         run: npm install
 
@@ -44,4 +41,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          path: ./_site
+          path: ./main/monProjetNFC/_site
