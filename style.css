@@ -1,24 +1,67 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
     margin: 20px;
     padding: 20px;
+    text-align: center;
 }
 
 h1 {
-    color: #333;
+    color: #007bff;
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #218838;
+}
+
+/* Container for NFC information */
+.nfc-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Styling for NFC information */
+.nfc-info {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Styling for NFC input */
+.nfc-input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Styling for NFC write button */
+.nfc-write-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nfc-write-button:hover {
+    background-color: #0056b3;
 }
