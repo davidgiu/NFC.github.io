@@ -26,10 +26,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 14
+
+      - name: Navigate to the project directory
+        run: cd main/monProjetNFC
 
       - name: Install project dependencies
         run: npm install
@@ -41,4 +44,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          path: ./main/monProjetNFC/_site
+          path: ./_site
