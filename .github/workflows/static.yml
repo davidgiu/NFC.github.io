@@ -31,8 +31,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Navigate to the project directory
-        run: monProjetNFC || exit
 
 
       - name: Install project dependencies
