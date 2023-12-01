@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -10,42 +11,45 @@
     <link rel="manifest" href="manifest.json">
     <title>Mon Projet NFC</title>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Mon projet NFC</h1>
-        </header>
-        <section class="actions">
-            <button onclick="lirePuceNFC()">Lire NFC</button>
-            <button onclick="ecrirePuceNFC()">Écrire NFC</button>
-        </section>
-        <section id="resultatNFC" class="resultat">
-            <p>Résultat NFC :</p>
-        </section>
-    </div>
+    <h1>Mon projet NFC</h1>
+
+    <button onclick="lirePuceNFC()">Lire NFC</button>
+    <button onclick="ecrirePuceNFC()">Écrire NFC</button>
+
+    <div id="resultatNFC">Résultat NFC : </div>
 
     <script>
         async function lirePuceNFC() {
-            try {
+            if ('NDEFReader' in window) {
                 const nfc = new NDEFReader();
-                await nfc.scan();
 
-                nfc.addEventListener('reading', event => {
-                    const { message, serialNumber } = event;
-                    document.getElementById('resultatNFC').innerHTML = `
-                        <p>Tag détecté :</p>
-                        <p>Message : ${JSON.stringify(message)}</p>
-                        <p>Numéro de série : ${serialNumber}</p>
-                    `;
-                });
+                try {
+                    await nfc.scan();
 
-                nfc.addEventListener('error', error => {
+                    nfc.addEventListener('reading', event => {
+                        const {
+                            message,
+                            serialNumber
+                        } = event;
+                        document.getElementById('resultatNFC').innerHTML = `
+                            <p>Tag détecté :</p>
+                            <p>Message : ${JSON.stringify(message)}</p>
+                            <p>Numéro de série : ${serialNumber}</p>
+                        `;
+                    });
+
+                    nfc.addEventListener('error', error => {
+                        console.error('Erreur NFC :', error);
+                        document.getElementById('resultatNFC').innerHTML = '<p>Erreur NFC : Veuillez réessayer.</p>';
+                    });
+                } catch (error) {
                     console.error('Erreur NFC :', error);
                     document.getElementById('resultatNFC').innerHTML = '<p>Erreur NFC : Veuillez réessayer.</p>';
-                });
-            } catch (error) {
-                console.error('Erreur NFC :', error);
-                document.getElementById('resultatNFC').innerHTML = '<p>Erreur NFC : Veuillez réessayer.</p>';
+                }
+            } else {
+                console.error('L\'API NFC n\'est pas prise en charge sur ce navigateur.');
             }
         }
 
@@ -62,4 +66,5 @@
         }
     </script>
 </body>
+
 </html>

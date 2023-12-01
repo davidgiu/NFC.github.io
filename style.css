@@ -66,6 +66,7 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* Styling for the popup */
 .popup {
     position: fixed;
     top: 50%;
@@ -79,6 +80,7 @@ button:hover {
     z-index: 1;
 }
 
+/* Styling for the loader */
 .loader {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #3498db;
