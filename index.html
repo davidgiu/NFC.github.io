@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="NFC Projet">
-
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="NFC Projet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -12,12 +11,18 @@
     <title>Mon Projet NFC</title>
 </head>
 <body>
-    <h1>Mon projet NFC</h1>
-
-    <button onclick="lirePuceNFC()">Lire NFC</button>
-    <button onclick="ecrirePuceNFC()">Écrire NFC</button>
-
-    <div id="resultatNFC">Résultat NFC : </div>
+    <div class="container">
+        <header>
+            <h1>Mon projet NFC</h1>
+        </header>
+        <section class="actions">
+            <button onclick="lirePuceNFC()">Lire NFC</button>
+            <button onclick="ecrirePuceNFC()">Écrire NFC</button>
+        </section>
+        <section id="resultatNFC" class="resultat">
+            <p>Résultat NFC :</p>
+        </section>
+    </div>
 
     <script>
         async function lirePuceNFC() {
